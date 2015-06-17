@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Create/Edit"/></h1>
+                        <h:panelGrid columns="2">
+                            <h:form>
+                                <h1><h:outputText value="Create/Edit"/></h1>
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel value="Studentcardnumber:" for="studentcardnumber" />
+                                    <h:inputText id="studentcardnumber" value="#{studentController.student.studentcardnumber}" title="Studentcardnumber" required="true" requiredMessage="The Studentcardnumber field is required."/>
+                                    <h:outputLabel value="FieldofstudyIdfieldofstudy:" for="fieldofstudyIdfieldofstudy" />
+                              
+                                    <h:inputText id="fieldofstudyIdfieldofstudy" value="#{studentController.student.fieldofstudyIdfieldofstudy}" title="FieldofstudyIdfieldofstudy" required="true" requiredMessage="The FieldofstudyIdfieldofstudy field is required."/>
+                                    <h:outputLabel value="LabgroupIdlabgroup:" for="labgroupIdlabgroup" />
+                                    <h:inputText id="labgroupIdlabgroup" value="#{studentController.student.labgroupIdlabgroup}" title="LabgroupIdlabgroup" required="true" requiredMessage="The LabgroupIdlabgroup field is required."/>
+                                    <h:outputLabel value="Firstname:" for="firstname" />
+                                    <h:inputText id="firstname" value="#{studentController.student.firstname}" title="Firstname" />
+                                    <h:outputLabel value="Lastname:" for="lastname" />
+                                    <h:inputText id="lastname" value="#{studentController.student.lastname}" title="Lastname" />
+                                    <h:outputLabel value="Email:" for="email" />
+                                    <h:inputText id="email" value="#{studentController.student.email}" title="Email" />
+                                    <h:outputLabel value="Studyyear:" for="studyyear" />
+                                    <h:inputText id="studyyear" value="#{studentController.student.studyyear}" title="Studyyear" />
+                                    <h:outputLabel value="Phonenumber:" for="phonenumber" />
+                                    <h:inputText id="phonenumber" value="#{studentController.student.phonenumber}" title="Phonenumber" />
+                                    <h:commandButton value="Dodaj" action="#{studentController.add()}"></h:commandButton>
+                                </h:panelGrid>
+                            </h:form>
+
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

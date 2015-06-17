@@ -3,6 +3,9 @@
   <persistence-unit name="swos-ejbPU" transaction-type="JTA">
     <jta-data-source>jdbc/swos</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <validation-mode>CALLBACK</validation-mode>
+    <properties>
+    </properties>
   </persistence-unit>
 </persistence>

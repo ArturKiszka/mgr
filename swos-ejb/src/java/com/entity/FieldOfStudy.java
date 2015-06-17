@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,23 +27,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "fieldofstudy")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FieldOfstudy.findAll", query = "SELECT f FROM FieldOfstudy f"),
-    @NamedQuery(name = "FieldOfstudy.findByIdfieldofstudy", query = "SELECT f FROM FieldOfstudy f WHERE f.idfieldofstudy = :idfieldofstudy"),
-    @NamedQuery(name = "FieldOfstudy.findByStudentStudentcardnumber", query = "SELECT f FROM FieldOfstudy f WHERE f.studentStudentcardnumber = :studentStudentcardnumber"),
-    @NamedQuery(name = "FieldOfstudy.findByFacultyIdfaculty", query = "SELECT f FROM FieldOfstudy f WHERE f.facultyIdfaculty = :facultyIdfaculty"),
-    @NamedQuery(name = "FieldOfstudy.findByName", query = "SELECT f FROM FieldOfstudy f WHERE f.name = :name")})
-public class FieldOfstudy implements Serializable {
+    @NamedQuery(name = "FieldOfStudy.findAll", query = "SELECT f FROM FieldOfStudy f"),
+    @NamedQuery(name = "FieldOfStudy.findByIdfieldofstudy", query = "SELECT f FROM FieldOfStudy f WHERE f.idfieldofstudy = :idfieldofstudy"),
+    @NamedQuery(name = "FieldOfStudy.findByFacultyIdfaculty", query = "SELECT f FROM FieldOfStudy f WHERE f.facultyIdfaculty = :facultyIdfaculty"),
+    @NamedQuery(name = "FieldOfStudy.findByName", query = "SELECT f FROM FieldOfStudy f WHERE f.name = :name")})
+public class FieldOfStudy implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idfieldofstudy")
     private Integer idfieldofstudy;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 6)
-    @Column(name = "student_studentcardnumber")
-    private String studentStudentcardnumber;
     @Basic(optional = false)
     @NotNull
     @Column(name = "faculty_idfaculty")
@@ -50,16 +46,15 @@ public class FieldOfstudy implements Serializable {
     @Column(name = "name")
     private String name;
 
-    public FieldOfstudy() {
+    public FieldOfStudy() {
     }
 
-    public FieldOfstudy(Integer idfieldofstudy) {
+    public FieldOfStudy(Integer idfieldofstudy) {
         this.idfieldofstudy = idfieldofstudy;
     }
 
-    public FieldOfstudy(Integer idfieldofstudy, String studentStudentcardnumber, int facultyIdfaculty) {
+    public FieldOfStudy(Integer idfieldofstudy, int facultyIdfaculty) {
         this.idfieldofstudy = idfieldofstudy;
-        this.studentStudentcardnumber = studentStudentcardnumber;
         this.facultyIdfaculty = facultyIdfaculty;
     }
 
@@ -69,14 +64,6 @@ public class FieldOfstudy implements Serializable {
 
     public void setIdfieldofstudy(Integer idfieldofstudy) {
         this.idfieldofstudy = idfieldofstudy;
-    }
-
-    public String getStudentStudentcardnumber() {
-        return studentStudentcardnumber;
-    }
-
-    public void setStudentStudentcardnumber(String studentStudentcardnumber) {
-        this.studentStudentcardnumber = studentStudentcardnumber;
     }
 
     public int getFacultyIdfaculty() {
@@ -105,10 +92,10 @@ public class FieldOfstudy implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FieldOfstudy)) {
+        if (!(object instanceof FieldOfStudy)) {
             return false;
         }
-        FieldOfstudy other = (FieldOfstudy) object;
+        FieldOfStudy other = (FieldOfStudy) object;
         if ((this.idfieldofstudy == null && other.idfieldofstudy != null) || (this.idfieldofstudy != null && !this.idfieldofstudy.equals(other.idfieldofstudy))) {
             return false;
         }
@@ -117,7 +104,7 @@ public class FieldOfstudy implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entity.FieldOfstudy[ idfieldofstudy=" + idfieldofstudy + " ]";
+        return "com.entity.FieldOfStudy[ idfieldofstudy=" + idfieldofstudy + " ]";
     }
     
 }

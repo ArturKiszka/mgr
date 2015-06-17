@@ -9,7 +9,7 @@ CREATE TABLE Classes (
 );
 
 CREATE TABLE Faculty (
-  idFaculty INTEGER   NOT NULL  ,
+  idFaculty SERIAL   NOT NULL  ,
   facultyName VARCHAR(20) NULL,
   facultyAdress VARCHAR(255) NULL,
   facultyPhoneNumer INTEGER   NULL,
@@ -17,22 +17,21 @@ CREATE TABLE Faculty (
 );
 
 CREATE TABLE FieldOfStudy (
-  idFieldOfStudy INTEGER   NOT NULL  ,
-  Student_studentCardNumber VARCHAR(6) NOT NULL,
-  Faculty_idFaculty INTEGER   NOT NULL,
+  idFieldOfStudy SERIAL  NOT NULL ,
+  Faculty_idFaculty INTEGER UNSIGNED NOT NULL,
   name VARCHAR(20) NULL,
-  PRIMARY KEY(idFieldOfStudy)
+  PRIMARY KEY(idFieldOfStudy),
 );
 
 CREATE TABLE LabGroup (
-  idLabGroup INTEGER   NOT NULL  ,
-  Student_studentCardNumber VARCHAR(6) NOT NULL,
+  idLabGroup SERIAL  NOT NULL ,
   name VARCHAR(45) NULL,
   PRIMARY KEY(idLabGroup)
 );
 
+
 CREATE TABLE Lecturer (
-  idLecturer INTEGER   NOT NULL  ,
+  idLecturer SERIAL  NOT NULL  ,
   firstName VARCHAR(20) NULL,
   lastName VARCHAR(45) NULL,
   academicTitle VARCHAR(20) NULL,
@@ -53,11 +52,13 @@ CREATE TABLE StorehouseOfDocuments (
 );
 
 CREATE TABLE Student (
-  studentCardNumber VARCHAR(6) NOT NULL  ,
+  studentCardNumber VARCHAR(6) NOT NULL ,
+  FieldOfStudy_idFieldOfStudy INTEGER  NOT NULL,
+  LabGroup_idLabGroup INTEGER  NOT NULL,
   firstName VARCHAR(45) NULL,
   lastName VARCHAR(45) NULL,
   email VARCHAR(20) NULL,
-  studyYear INTEGER   NULL,
+  studyYear INTEGER  NULL,
   phoneNumber VARCHAR(9) NULL,
   PRIMARY KEY(studentCardNumber)
 );

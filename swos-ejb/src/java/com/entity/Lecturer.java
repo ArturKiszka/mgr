@@ -9,9 +9,12 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -34,8 +37,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Lecturer.findByPhonenumber", query = "SELECT l FROM Lecturer l WHERE l.phonenumber = :phonenumber"),
     @NamedQuery(name = "Lecturer.findByOffice", query = "SELECT l FROM Lecturer l WHERE l.office = :office")})
 public class Lecturer implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @SequenceGenerator(name = "lecturer_idlecturer_seq",
+            sequenceName = "lecturer_idlecturer_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "lecturer_idlecturer_seq")
     @Basic(optional = false)
     @NotNull
     @Column(name = "idlecturer")
@@ -147,5 +156,5 @@ public class Lecturer implements Serializable {
     public String toString() {
         return "com.entity.Lecturer[ idlecturer=" + idlecturer + " ]";
     }
-    
+
 }

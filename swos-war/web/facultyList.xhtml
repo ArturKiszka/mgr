@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                <h:link value="Dodaj kolejny wydział" outcome="facultyAdd">
+                </h:link>
+                <h:dataTable var="faculty" value="#{facultyController.findAll()}" border="1" cellpadding="2" cellspacing="2">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{faculty.idfaculty}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Wydział</f:facet>
+                        <h:outputText value="#{faculty.facultyname}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Telefon</f:facet>
+                        <h:outputText value="#{faculty.facultyphonenumer}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Adres</f:facet>
+                        <h:outputText value="#{faculty.facultyadress}"></h:outputText>
+                    </h:column>
+                 
+                    <h:column>
+                        <f:facet name="header">Opcje</f:facet>
+                        <h:form>
+                            <h:commandButton value="Usuń" action="#{facultyController.delete(faculty)}">
+                            </h:commandButton>
+                        </h:form>
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton value="Edytuj" action="#{facultyController.edit(faculty)}">
+                            </h:commandButton>
+                        </h:form>
+                    </h:column>
+
+                </h:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

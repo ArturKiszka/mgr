@@ -5,7 +5,7 @@
  */
 package com.model;
 
-import com.entity.FieldOfstudy;
+import com.entity.FieldOfStudy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author akis
  */
 @Stateless
-public class FieldOfstudyFacade extends AbstractFacade<FieldOfstudy> {
+public class FieldOfstudyFacade extends AbstractFacade<FieldOfStudy> {
     @PersistenceContext(unitName = "swos-ejbPU")
     private EntityManager em;
 
@@ -25,7 +25,7 @@ public class FieldOfstudyFacade extends AbstractFacade<FieldOfstudy> {
     }
 
     public FieldOfstudyFacade() {
-        super(FieldOfstudy.class);
+        super(FieldOfStudy.class);
     }
     
 }
