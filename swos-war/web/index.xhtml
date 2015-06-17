@@ -7,28 +7,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
-            <h:dataTable var="user" value="#{userController.findAll()}" border="1" cellpadding="2" cellspacing="2">
-                <h:column>
-                    <f:facet name="header"> Id </f:facet>
-                    <h:outputText value="#{user.userId}"></h:outputText>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"> Imie </f:facet>
-                    <h:outputText value="#{user.firstName}"></h:outputText>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"> Nazwisko </f:facet>
-                    <h:outputText value="#{user.lastName}"></h:outputText>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"> UserName </f:facet>
-                    <h:outputText value="#{user.username}"></h:outputText>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+      
     </h:body>
 </html>
 

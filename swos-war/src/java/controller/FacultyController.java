@@ -5,10 +5,6 @@
  */
 package controller;
 
-import com.entity.User;
-import com.model.UserFacade;
-import java.util.List;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -18,15 +14,12 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class UserController {
-    @EJB
-    private UserFacade userFacade;
+public class FacultyController {
 
- 
-    public UserController() {
+    /**
+     * Creates a new instance of FacultyController
+     */
+    public FacultyController() {
     }
     
-    public List<User> findAll(){
-        return this.userFacade.findAll();
-    }
 }

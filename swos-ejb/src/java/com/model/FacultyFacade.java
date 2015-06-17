@@ -5,7 +5,7 @@
  */
 package com.model;
 
-import com.entity.User;
+import com.entity.Faculty;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author akis
  */
 @Stateless
-public class UserFacade extends AbstractFacade<User> {
+public class FacultyFacade extends AbstractFacade<Faculty> {
     @PersistenceContext(unitName = "swos-ejbPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class UserFacade extends AbstractFacade<User> {
         return em;
     }
 
-    public UserFacade() {
-        super(User.class);
+    public FacultyFacade() {
+        super(Faculty.class);
     }
     
 }
