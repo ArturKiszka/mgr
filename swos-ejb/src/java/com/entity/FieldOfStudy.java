@@ -114,7 +114,7 @@ public class FieldOfStudy implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entity.FieldOfstudy[ idfieldofstudy=" + idfieldofstudy + " ]";
+        return name;
     }
     
 }

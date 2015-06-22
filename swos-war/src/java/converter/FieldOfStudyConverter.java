@@ -1,7 +1,9 @@
 package converter;
 
 import com.entity.Faculty;
+import com.entity.FieldOfStudy;
 import com.model.FacultyFacade;
+import com.model.FieldOfStudyFacade;
 import controller.FacultyController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,17 +25,17 @@ import javax.persistence.Query;
  *
  * @author akis
  */
-@FacesConverter("facultyConverter")
-public class FacultyConverter implements Converter {
+@FacesConverter("fieldOfStudyConverter")
+public class FieldOfStudyConverter implements Converter {
     
-    FacultyFacade facultyFacade = lookupFacultyFacadeBean();
+    FieldOfStudyFacade fieldOfStudyFacade = lookupFacultyFacadeBean();
        
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         
         if (value != null && value.trim().length() > 0) {          
             try {
-                return facultyFacade.find(Integer.parseInt(value));
+                return fieldOfStudyFacade.find(Integer.parseInt(value));
             } catch (NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion error", "Zly wybor."));
             }
@@ -45,16 +47,16 @@ public class FacultyConverter implements Converter {
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object object) {
         if (object != null) {
-            return String.valueOf(((Faculty) object).getIdfaculty());
+            return String.valueOf(((FieldOfStudy) object).getIdfieldofstudy());
         } else {
             return null;
         }
     }
 
-    private FacultyFacade lookupFacultyFacadeBean() {
+    private FieldOfStudyFacade lookupFacultyFacadeBean() {
         try {
             Context c = new InitialContext();
-            return (FacultyFacade) c.lookup("java:global/swos/swos-ejb/FacultyFacade!com.model.FacultyFacade");
+            return (FieldOfStudyFacade) c.lookup("java:global/swos/swos-ejb/FieldOfStudyFacade!com.model.FieldOfStudyFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

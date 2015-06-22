@@ -1,7 +1,11 @@
 package converter;
 
 import com.entity.Faculty;
+import com.entity.LabGroup;
+import com.entity.Lecturer;
 import com.model.FacultyFacade;
+import com.model.LabGroupFacade;
+import com.model.LecturerFacade;
 import controller.FacultyController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,17 +27,17 @@ import javax.persistence.Query;
  *
  * @author akis
  */
-@FacesConverter("facultyConverter")
-public class FacultyConverter implements Converter {
+@FacesConverter("lecturerConverter")
+public class LecturerConverter implements Converter {
+    LecturerFacade lecturerFacade = lookupLabGroupFacadeBean();
     
-    FacultyFacade facultyFacade = lookupFacultyFacadeBean();
-       
+
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         
         if (value != null && value.trim().length() > 0) {          
             try {
-                return facultyFacade.find(Integer.parseInt(value));
+                return lecturerFacade.find(Integer.parseInt(value));
             } catch (NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion error", "Zly wybor."));
             }
@@ -45,20 +49,22 @@ public class FacultyConverter implements Converter {
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object object) {
         if (object != null) {
-            return String.valueOf(((Faculty) object).getIdfaculty());
+            return String.valueOf(((Lecturer) object).getIdlecturer());
         } else {
             return null;
         }
     }
 
-    private FacultyFacade lookupFacultyFacadeBean() {
+    private LecturerFacade lookupLabGroupFacadeBean() {
         try {
             Context c = new InitialContext();
-            return (FacultyFacade) c.lookup("java:global/swos/swos-ejb/FacultyFacade!com.model.FacultyFacade");
+            return (LecturerFacade) c.lookup("java:global/swos/swos-ejb/LecturerFacade!com.model.LecturerFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
+
+
 
 }

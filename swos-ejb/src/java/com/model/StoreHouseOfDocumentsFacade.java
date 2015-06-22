@@ -5,7 +5,8 @@
  */
 package com.model;
 
-import com.entity.FieldOfStudy;
+import com.entity.StoreHouseOfDocuments;
+import com.entity.Student;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,17 +16,18 @@ import javax.persistence.PersistenceContext;
  * @author akis
  */
 @Stateless
-public class FieldOfStudyFacade extends AbstractFacade<FieldOfStudy> {
+public class StoreHouseOfDocumentsFacade extends AbstractFacade<StoreHouseOfDocuments> {
     @PersistenceContext(unitName = "swos-ejbPU")
     private EntityManager em;
+
+    
+    public StoreHouseOfDocumentsFacade() {
+        super(StoreHouseOfDocuments.class);
+    }
 
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
-    public FieldOfStudyFacade() {
-        super(FieldOfStudy.class);
-    }
-    
 }

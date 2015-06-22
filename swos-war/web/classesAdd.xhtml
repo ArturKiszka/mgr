@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Create/Edit"/></h1>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Name:" for="name" />
+                            <h:inputText id="name" value="#{classesController.classes.name}" title="Name"/>
+                            <h:outputLabel value="Classesterm:" for="classesterm" />
+                            <h:inputText id="classesterm" value="#{classesController.classes.classesterm}" title="Classesterm" />
+                            <h:outputLabel value="Begininghour:" for="begininghour" />
+                            <h:inputText id="begininghour" value="#{classesController.classes.begininghour}" title="Begininghour" >
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:inputText>
+                            <h:outputLabel value="Lecturehall:" for="lecturehall" />
+                            <h:inputText id="lecturehall" value="#{classesController.classes.lecturehall}" title="Lecturehall" />
+                            <h:outputLabel value="Documentnamemask:" for="documentnamemask" />
+                            <h:inputText id="documentnamemask" value="#{classesController.classes.documentnamemask}" title="Documentnamemask" />
+                            <h:outputLabel value="Idlecturer:" for="idlecturer" />
+                            <h:selectOneMenu id="idlecturer" value="#{lecturerController.lecturer.idlecturer}" title="idLecturer" >
+                                <f:converter converterId="lecturerConverter" />
+                                <f:selectItems value="#{lecturerController.findAll()}"
+                                               var="lecturer" itemValue="#{lecturer}" itemLabel="#{lecturer.firstname} #{lecturer.lastname} "/>
+                            </h:selectOneMenu>
+                            <h:commandButton value="Dodaj kier" action="#{classesController.add}"></h:commandButton>
+                            
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
