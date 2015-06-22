@@ -160,7 +160,7 @@ public class Lecturer implements Serializable {
 
     @Override
     public String toString() {
-        return firstname + " " + lastname;
+        return "com.entity.Lecturer[ idlecturer=" + idlecturer + " ]";
     }
     
 }

@@ -122,7 +122,7 @@ public class Faculty implements Serializable {
 
     @Override
     public String toString() {
-        return facultyname;
+        return "com.entity.Faculty[ idfaculty=" + idfaculty + " ]";
     }
     
 }

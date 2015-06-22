@@ -99,7 +99,7 @@ public class LabGroup implements Serializable {
 
     @Override
     public String toString() {
-        return name;
+        return "com.entity.LabGroup[ idlabgroup=" + idlabgroup + " ]";
     }
     
 }

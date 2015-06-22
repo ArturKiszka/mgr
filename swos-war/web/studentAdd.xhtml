@@ -28,17 +28,13 @@
                             <h:inputText id="phonenumber" value="#{studentController.student.phonenumber}" title="Phonenumber" />
                             <h:outputLabel value="Idfieldofstudy:" for="idfieldofstudy" />
                             <h:selectOneMenu id="idfieldofstudy" value="#{studentController.student.idfieldofstudy}" title="Idfieldofstudy" required="true">
-                                <f:converter converterId="fieldOfStudyConverter" />
                                 <f:selectItems value="#{fieldOfStydyController.findAll()}"
                                                var="fieldOfStudy" itemValue="#{fieldOfStudy}" itemLabel="#{fieldOfStudy.name}"/>
                             </h:selectOneMenu>
-                            <h:outputLabel value="Grupa ćwiczeniowa" for="idfieldofstudy" />
                             <h:selectOneMenu id="idlabgroup" value="#{studentController.student.idlabgroup}" title="Idlabgroup" required="true">
-                                <f:converter converterId="labGroupConverter" />
                                 <f:selectItems value="#{labGroupController.findAll()}"
                                                var="labGroup" itemValue="#{labGroup}" itemLabel="#{labGroup.name}"/>
                             </h:selectOneMenu>
-                            <h:commandButton value="Dodaj" action="#{studentController.add()}"></h:commandButton>
                         </h:panelGrid>
                     </h:form>
                 </f:view>

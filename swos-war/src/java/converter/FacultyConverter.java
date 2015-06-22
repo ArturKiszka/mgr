@@ -27,13 +27,25 @@ import javax.persistence.Query;
 public class FacultyConverter implements Converter {
     
     FacultyFacade facultyFacade = lookupFacultyFacadeBean();
-       
+    
+    @Inject
+    private FacultyController faculty = new FacultyController();
+    
+    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         
-        if (value != null && value.trim().length() > 0) {          
+        if (value != null && value.trim().length() > 0) {
+            
             try {
-                return facultyFacade.find(Integer.parseInt(value));
+//        Integer jeden = new Integer(1);
+        
+//        Query q = em.createNamedQuery("Faculty.findByIdfaculty").setParameter("idfaculty", jeden);
+//                Faculty f = new Faculty();
+//                facultyFacade.find(1);
+               Faculty f = facultyFacade.find(Integer.parseInt(value));
+//                Faculty f = faculty.find(Integer.parseInt(value));
+                return f;
             } catch (NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion error", "Zly wybor."));
             }

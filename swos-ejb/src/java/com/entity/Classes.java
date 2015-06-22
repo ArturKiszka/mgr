@@ -36,20 +36,21 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Classes.findAll", query = "SELECT c FROM Classes c"),
     @NamedQuery(name = "Classes.findByIdclasses", query = "SELECT c FROM Classes c WHERE c.idclasses = :idclasses"),
+    @NamedQuery(name = "Classes.findByLecturerIdlecturer", query = "SELECT c FROM Classes c WHERE c.lecturerIdlecturer = :lecturerIdlecturer"),
     @NamedQuery(name = "Classes.findByClassesterm", query = "SELECT c FROM Classes c WHERE c.classesterm = :classesterm"),
     @NamedQuery(name = "Classes.findByBegininghour", query = "SELECT c FROM Classes c WHERE c.begininghour = :begininghour"),
     @NamedQuery(name = "Classes.findByLecturehall", query = "SELECT c FROM Classes c WHERE c.lecturehall = :lecturehall"),
     @NamedQuery(name = "Classes.findByDocumentnamemask", query = "SELECT c FROM Classes c WHERE c.documentnamemask = :documentnamemask")})
 public class Classes implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idclasses")
     private Integer idclasses;
-    @Column(name = "name")
-    private String name = new String(" ");
+    @Basic(optional = false)
+    @Column(name = "lecturer_idlecturer")
+    private int lecturerIdlecturer;
     @Size(max = 45)
     @Column(name = "classesterm")
     private String classesterm;
@@ -71,27 +72,29 @@ public class Classes implements Serializable {
     public Classes() {
     }
 
-    public Classes(Integer idclasses, String name) {
+    public Classes(Integer idclasses) {
         this.idclasses = idclasses;
-        this.name = name;
     }
 
-    
+    public Classes(Integer idclasses, int lecturerIdlecturer) {
+        this.idclasses = idclasses;
+        this.lecturerIdlecturer = lecturerIdlecturer;
+    }
+
     public Integer getIdclasses() {
         return idclasses;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-
     public void setIdclasses(Integer idclasses) {
         this.idclasses = idclasses;
+    }
+
+    public int getLecturerIdlecturer() {
+        return lecturerIdlecturer;
+    }
+
+    public void setLecturerIdlecturer(int lecturerIdlecturer) {
+        this.lecturerIdlecturer = lecturerIdlecturer;
     }
 
     public String getClassesterm() {
@@ -167,5 +170,5 @@ public class Classes implements Serializable {
     public String toString() {
         return "com.entity.Classes[ idclasses=" + idclasses + " ]";
     }
-
+    
 }
