@@ -1,7 +1,11 @@
 package converter;
 
 import com.entity.Faculty;
+import com.entity.FieldOfStudy;
+import com.entity.LabGroup;
 import com.model.FacultyFacade;
+import com.model.FieldOfStudyFacade;
+import com.model.LabGroupFacade;
 import controller.FacultyController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,14 +27,11 @@ import javax.persistence.Query;
  *
  * @author akis
  */
-@FacesConverter("facultyConverter")
-public class FacultyConverter implements Converter {
+@FacesConverter("labGroupConverter")
+public class LabGroupConverter implements Converter {
     
-    FacultyFacade facultyFacade = lookupFacultyFacadeBean();
-    
-    @Inject
-    private FacultyController faculty = new FacultyController();
-    
+    LabGroupFacade labGroupFacade = lookupLabGroupBean();
+  
     
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
@@ -38,7 +39,7 @@ public class FacultyConverter implements Converter {
         if (value != null && value.trim().length() > 0) {
             
             try {
-                return facultyFacade.find(Integer.parseInt(value));
+                return labGroupFacade.find(Integer.parseInt(value));
             } catch (NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion error", "Zly wybor."));
             }
@@ -50,16 +51,16 @@ public class FacultyConverter implements Converter {
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object object) {
         if (object != null) {
-            return String.valueOf(((Faculty) object).getIdfaculty());
+            return String.valueOf(((LabGroup) object).getIdlabgroup());
         } else {
             return null;
         }
     }
 
-    private FacultyFacade lookupFacultyFacadeBean() {
+    private LabGroupFacade lookupLabGroupBean() {
         try {
             Context c = new InitialContext();
-            return (FacultyFacade) c.lookup("java:global/swos/swos-ejb/FacultyFacade!com.model.FacultyFacade");
+            return (LabGroupFacade) c.lookup("java:global/swos/swos-ejb/LabGroupFacade!com.model.LabGroupFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
