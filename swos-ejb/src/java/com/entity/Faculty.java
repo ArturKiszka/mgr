@@ -6,6 +6,7 @@
 package com.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,11 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,13 +37,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Faculty implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name = "faculty_idfaculty_seq",
-            sequenceName = "faculty_idfaculty_seq",
-            allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "faculty_idfaculty_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idfaculty")
     private Integer idfaculty;
     @Size(max = 20)
@@ -53,6 +49,8 @@ public class Faculty implements Serializable {
     private String facultyadress;
     @Column(name = "facultyphonenumer")
     private Integer facultyphonenumer;
+    @OneToMany(mappedBy = "idfaculty")
+    private List<FieldOfStudy> fieldOfstudyList;
 
     public Faculty() {
     }
@@ -91,6 +89,15 @@ public class Faculty implements Serializable {
 
     public void setFacultyphonenumer(Integer facultyphonenumer) {
         this.facultyphonenumer = facultyphonenumer;
+    }
+
+    @XmlTransient
+    public List<FieldOfStudy> getFieldOfstudyList() {
+        return fieldOfstudyList;
+    }
+
+    public void setFieldOfstudyList(List<FieldOfStudy> fieldOfStudyList) {
+        this.fieldOfstudyList = fieldOfStudyList;
     }
 
     @Override

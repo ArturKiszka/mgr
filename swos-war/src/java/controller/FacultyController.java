@@ -11,6 +11,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -36,6 +38,12 @@ public class FacultyController {
     }
     public List<Faculty> findAll(){
         return this.facultyFacade.findAll();
+    }
+    public Faculty findById(int id){
+        
+        System.out.println(facultyFacade);
+        Faculty f = new Faculty();//facultyFacade.find(id);
+        return f;
     }
     public String add(){
         this.facultyFacade.create(faculty);

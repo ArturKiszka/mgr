@@ -5,29 +5,27 @@
  */
 package com.model;
 
-import com.entity.Faculty;
+import com.entity.FieldOfStudy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
  * @author akis
  */
 @Stateless
-public class FacultyFacade extends AbstractFacade<Faculty> {
-
+public class FieldOfStudyFacade extends AbstractFacade<FieldOfStudy> {
     @PersistenceContext(unitName = "swos-ejbPU")
     private EntityManager em;
-
-    public FacultyFacade() {
-        super(Faculty.class);
-    }
 
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    public FieldOfStudyFacade() {
+        super(FieldOfStudy.class);
+    }
+    
 }

@@ -6,19 +6,21 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
         <ui:composition template="./template.xhtml">
             <ui:define name="content">
                 <f:view>
                     <h:form>
                         <h1><h:outputText value="Create/Edit"/></h1>
                         <h:panelGrid columns="2">
-                            <h:outputLabel value="Idlabgroup:" for="idlabgroup" />
-                            <h:inputText id="idlabgroup" value="#{labGroupController.labGroup.idlabgroup}" title="Idlabgroup" required="true" requiredMessage="The Idlabgroup field is required."/>
                             <h:outputLabel value="Name:" for="name" />
-                            <h:inputText id="name" value="#{labGroupController.labGroup.name}" title="Name" />
-                            <h:commandButton value="Zapisz" action="#{labGroupController.edit()}">
-                            </h:commandButton>
+                            <h:inputText id="name" value="#{fieldOfStydyController.filedOfStudy.name}" title="Name" />
+                            <h:outputLabel value="Idfaculty:" for="idfaculty" />
+                            <h:selectOneMenu id="idfaculty" value="#{fieldOfStydyController.filedOfStudy.idfaculty}" title="Idfaculty" >
+                                <f:converter converterId="facultyConverter" />
+                                <f:selectItems value="#{facultyController.findAll()}"
+                                               var="faculty" itemValue="#{faculty}" itemLabel="#{faculty.facultyname}"/>
+                            </h:selectOneMenu>
+                            <h:commandButton value="Dodaj kier" action="#{fieldOfStydyController.add}"></h:commandButton>
                         </h:panelGrid>
                     </h:form>
                 </f:view>

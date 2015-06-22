@@ -5,19 +5,24 @@
  */
 package com.entity;
 
+import com.model.FacultyFacade;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,10 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "fieldofstudy")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FieldOfStudy.findAll", query = "SELECT f FROM FieldOfStudy f"),
-    @NamedQuery(name = "FieldOfStudy.findByIdfieldofstudy", query = "SELECT f FROM FieldOfStudy f WHERE f.idfieldofstudy = :idfieldofstudy"),
-    @NamedQuery(name = "FieldOfStudy.findByFacultyIdfaculty", query = "SELECT f FROM FieldOfStudy f WHERE f.facultyIdfaculty = :facultyIdfaculty"),
-    @NamedQuery(name = "FieldOfStudy.findByName", query = "SELECT f FROM FieldOfStudy f WHERE f.name = :name")})
+    @NamedQuery(name = "FieldOfstudy.findAll", query = "SELECT f FROM FieldOfStudy f"),
+    @NamedQuery(name = "FieldOfstudy.findByIdfieldofstudy", query = "SELECT f FROM FieldOfStudy f WHERE f.idfieldofstudy = :idfieldofstudy"),
+    @NamedQuery(name = "FieldOfstudy.findByName", query = "SELECT f FROM FieldOfStudy f WHERE f.name = :name")})
 public class FieldOfStudy implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,13 +42,14 @@ public class FieldOfStudy implements Serializable {
     @Basic(optional = false)
     @Column(name = "idfieldofstudy")
     private Integer idfieldofstudy;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "faculty_idfaculty")
-    private int facultyIdfaculty;
     @Size(max = 20)
     @Column(name = "name")
     private String name;
+    @OneToMany(mappedBy = "idfieldofstudy")
+    private List<Student> studentList;
+    @JoinColumn(name = "idfaculty", referencedColumnName = "idfaculty")
+    @ManyToOne
+    private Faculty idfaculty;
 
     public FieldOfStudy() {
     }
@@ -53,10 +58,7 @@ public class FieldOfStudy implements Serializable {
         this.idfieldofstudy = idfieldofstudy;
     }
 
-    public FieldOfStudy(Integer idfieldofstudy, int facultyIdfaculty) {
-        this.idfieldofstudy = idfieldofstudy;
-        this.facultyIdfaculty = facultyIdfaculty;
-    }
+   
 
     public Integer getIdfieldofstudy() {
         return idfieldofstudy;
@@ -65,21 +67,29 @@ public class FieldOfStudy implements Serializable {
     public void setIdfieldofstudy(Integer idfieldofstudy) {
         this.idfieldofstudy = idfieldofstudy;
     }
-
-    public int getFacultyIdfaculty() {
-        return facultyIdfaculty;
-    }
-
-    public void setFacultyIdfaculty(int facultyIdfaculty) {
-        this.facultyIdfaculty = facultyIdfaculty;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @XmlTransient
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+    }
+
+    public Faculty getIdfaculty() {
+        return idfaculty;
+    }
+
+    public void setIdfaculty(Faculty idfaculty) {
+        this.idfaculty = idfaculty;
     }
 
     @Override
@@ -104,7 +114,7 @@ public class FieldOfStudy implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entity.FieldOfStudy[ idfieldofstudy=" + idfieldofstudy + " ]";
+        return "com.entity.FieldOfstudy[ idfieldofstudy=" + idfieldofstudy + " ]";
     }
     
 }

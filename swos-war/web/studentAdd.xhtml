@@ -9,33 +9,32 @@
         <ui:composition template="./template.xhtml">
             <ui:define name="content">
                 <f:view>
+
+
                     <h:form>
                         <h1><h:outputText value="Create/Edit"/></h1>
                         <h:panelGrid columns="2">
-                            <h:form>
-                                <h1><h:outputText value="Create/Edit"/></h1>
-                                <h:panelGrid columns="2">
-                                    <h:outputLabel value="Studentcardnumber:" for="studentcardnumber" />
-                                    <h:inputText id="studentcardnumber" value="#{studentController.student.studentcardnumber}" title="Studentcardnumber" required="true" requiredMessage="The Studentcardnumber field is required."/>
-                                    <h:outputLabel value="FieldofstudyIdfieldofstudy:" for="fieldofstudyIdfieldofstudy" />
-                              
-                                    <h:inputText id="fieldofstudyIdfieldofstudy" value="#{studentController.student.fieldofstudyIdfieldofstudy}" title="FieldofstudyIdfieldofstudy" required="true" requiredMessage="The FieldofstudyIdfieldofstudy field is required."/>
-                                    <h:outputLabel value="LabgroupIdlabgroup:" for="labgroupIdlabgroup" />
-                                    <h:inputText id="labgroupIdlabgroup" value="#{studentController.student.labgroupIdlabgroup}" title="LabgroupIdlabgroup" required="true" requiredMessage="The LabgroupIdlabgroup field is required."/>
-                                    <h:outputLabel value="Firstname:" for="firstname" />
-                                    <h:inputText id="firstname" value="#{studentController.student.firstname}" title="Firstname" />
-                                    <h:outputLabel value="Lastname:" for="lastname" />
-                                    <h:inputText id="lastname" value="#{studentController.student.lastname}" title="Lastname" />
-                                    <h:outputLabel value="Email:" for="email" />
-                                    <h:inputText id="email" value="#{studentController.student.email}" title="Email" />
-                                    <h:outputLabel value="Studyyear:" for="studyyear" />
-                                    <h:inputText id="studyyear" value="#{studentController.student.studyyear}" title="Studyyear" />
-                                    <h:outputLabel value="Phonenumber:" for="phonenumber" />
-                                    <h:inputText id="phonenumber" value="#{studentController.student.phonenumber}" title="Phonenumber" />
-                                    <h:commandButton value="Dodaj" action="#{studentController.add()}"></h:commandButton>
-                                </h:panelGrid>
-                            </h:form>
-
+                            <h:outputLabel value="Studentcardnumber:" for="studentcardnumber" />
+                            <h:inputText id="studentcardnumber" value="#{studentController.student.studentcardnumber}" title="Studentcardnumber" required="true" requiredMessage="The Studentcardnumber field is required."/>
+                            <h:outputLabel value="Firstname:" for="firstname" />
+                            <h:inputText id="firstname" value="#{studentController.student.firstname}" title="Firstname" />
+                            <h:outputLabel value="Lastname:" for="lastname" />
+                            <h:inputText id="lastname" value="#{studentController.student.lastname}" title="Lastname" />
+                            <h:outputLabel value="Email:" for="email" />
+                            <h:inputText id="email" value="#{studentController.student.email}" title="Email" />
+                            <h:outputLabel value="Studyyear:" for="studyyear" />
+                            <h:inputText id="studyyear" value="#{studentController.student.studyyear}" title="Studyyear" />
+                            <h:outputLabel value="Phonenumber:" for="phonenumber" />
+                            <h:inputText id="phonenumber" value="#{studentController.student.phonenumber}" title="Phonenumber" />
+                            <h:outputLabel value="Idfieldofstudy:" for="idfieldofstudy" />
+                            <h:selectOneMenu id="idfieldofstudy" value="#{studentController.student.idfieldofstudy}" title="Idfieldofstudy" required="true">
+                                <f:selectItems value="#{fieldOfStydyController.findAll()}"
+                                               var="fieldOfStudy" itemValue="#{fieldOfStudy}" itemLabel="#{fieldOfStudy.name}"/>
+                            </h:selectOneMenu>
+                            <h:selectOneMenu id="idlabgroup" value="#{studentController.student.idlabgroup}" title="Idlabgroup" required="true">
+                                <f:selectItems value="#{labGroupController.findAll()}"
+                                               var="labGroup" itemValue="#{labGroup}" itemLabel="#{labGroup.name}"/>
+                            </h:selectOneMenu>
                         </h:panelGrid>
                     </h:form>
                 </f:view>

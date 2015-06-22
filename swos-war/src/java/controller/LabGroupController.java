@@ -51,15 +51,16 @@ public class LabGroupController {
         return "labGroupList";
     }
 
-    public String edit(LabGroup labGroup) {
+   public String edit(LabGroup labGroup){
         this.labGroup = labGroup;
         return "labGroupEdit";
     }
-
-    public String edit() {
+      public String edit(){
         this.labGroupFacade.edit(labGroup);
         this.labGroup = new LabGroup();
         return "labGroupList";
     }
+      
+
 
 }

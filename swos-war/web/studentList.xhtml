@@ -12,54 +12,42 @@
             <ui:define name="content">
                 <h:link value="Dodaj nowego student" outcome="studentAdd">
                 </h:link>
-                <h:dataTable var="student" value="#{studentController.findAll()}" border="1" cellpadding="2" cellspacing="2">
-                    <h:column>
-                        <f:facet name="header">Nr legitymacji</f:facet>
-                        <h:outputText value="#{student.studentcardnumber}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Imię</f:facet>
-                        <h:outputText value="#{student.firstname}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Nazwisko</f:facet>
-                        <h:outputText value="#{student.lastname}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Email</f:facet>
-                        <h:outputText value="#{student.email}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Rok studiów</f:facet>
-                        <h:outputText value="#{student.studyyear}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Nr telefonu</f:facet>
-                        <h:outputText value="#{student.phonenumber}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Id grupy cwiczeniowej</f:facet>
-                        <h:outputText value="#{student.labgroupIdlabgroup}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Id kierunku studiow</f:facet>
-                        <h:outputText value="#{student.fieldofstudyIdfieldofstudy}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Opcje</f:facet>
-                        <h:form>
-                            <h:commandButton value="Usuń" action="#{studentController.delete(student)}">
-                            </h:commandButton>
-                        </h:form>
-                    </h:column>
-                    <h:column>
-                        <h:form>
-                            <h:commandButton value="Edytuj" action="#{studentController.edit(student)}">
-                            </h:commandButton>
-                        </h:form>
-                    </h:column>
+                <h:form>
+                    <table border="2">
+                        <tr><th></th><th></th><th>Legitymacja</th><th>Imie</th><th>Nazwisko</th><th>Email</th><th>Rok studiow</th><th>Grupa</th><th>Kierunek studiow</th>
+                            <th>Opcje</th>
+                            <th>Opecje</th>
+                        </tr>
+                        <ui:repeat value="#{studentController.findAll()}" var="student">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>#{student.studentcardnumber}</td>
+        <!--                        <td>#{student.firstname}</td>-->
+                                <td>#{student.lastname}</td>
+                                <td>#{student.email}</td>
+                                <td>#{student.studyyear}</td>
+                                <td>#{student.phonenumber}</td> 
+                                <td>#{student.idlabgroup}</td>
+                                <td>#{student.idfieldofstudy}</td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton value="Usuń" action="#{studentController.delete(student)}">
+                                        </h:commandButton>
+                                    </h:form>
+                                </td>
+                                <td>
+                                    <h:form>
+                                        <h:commandButton value="Edytuj" action="#{studentController.edit(student)}">
+                                        </h:commandButton>
+                                    </h:form>
+                                </td>
+                            </tr>
 
-                </h:dataTable>
+                        </ui:repeat>
+                    </table>
+                </h:form>
+
             </ui:define>
 
         </ui:composition>

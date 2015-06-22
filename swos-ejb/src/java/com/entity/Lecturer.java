@@ -6,6 +6,7 @@
 package com.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,11 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,16 +38,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Lecturer.findByPhonenumber", query = "SELECT l FROM Lecturer l WHERE l.phonenumber = :phonenumber"),
     @NamedQuery(name = "Lecturer.findByOffice", query = "SELECT l FROM Lecturer l WHERE l.office = :office")})
 public class Lecturer implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name = "lecturer_idlecturer_seq",
-            sequenceName = "lecturer_idlecturer_seq",
-            allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "lecturer_idlecturer_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idlecturer")
     private Integer idlecturer;
     @Size(max = 20)
@@ -68,6 +63,8 @@ public class Lecturer implements Serializable {
     @Size(max = 45)
     @Column(name = "office")
     private String office;
+    @OneToMany(mappedBy = "idlecturer")
+    private List<Classes> classesList;
 
     public Lecturer() {
     }
@@ -132,6 +129,15 @@ public class Lecturer implements Serializable {
         this.office = office;
     }
 
+    @XmlTransient
+    public List<Classes> getClassesList() {
+        return classesList;
+    }
+
+    public void setClassesList(List<Classes> classesList) {
+        this.classesList = classesList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -156,5 +162,5 @@ public class Lecturer implements Serializable {
     public String toString() {
         return "com.entity.Lecturer[ idlecturer=" + idlecturer + " ]";
     }
-
+    
 }

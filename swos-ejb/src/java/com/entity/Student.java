@@ -6,16 +6,21 @@
 package com.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,8 +32,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s"),
     @NamedQuery(name = "Student.findByStudentcardnumber", query = "SELECT s FROM Student s WHERE s.studentcardnumber = :studentcardnumber"),
-    @NamedQuery(name = "Student.findByFieldofstudyIdfieldofstudy", query = "SELECT s FROM Student s WHERE s.fieldofstudyIdfieldofstudy = :fieldofstudyIdfieldofstudy"),
-    @NamedQuery(name = "Student.findByLabgroupIdlabgroup", query = "SELECT s FROM Student s WHERE s.labgroupIdlabgroup = :labgroupIdlabgroup"),
     @NamedQuery(name = "Student.findByFirstname", query = "SELECT s FROM Student s WHERE s.firstname = :firstname"),
     @NamedQuery(name = "Student.findByLastname", query = "SELECT s FROM Student s WHERE s.lastname = :lastname"),
     @NamedQuery(name = "Student.findByEmail", query = "SELECT s FROM Student s WHERE s.email = :email"),
@@ -42,14 +45,12 @@ public class Student implements Serializable {
     @Size(min = 1, max = 6)
     @Column(name = "studentcardnumber")
     private String studentcardnumber;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "fieldofstudy_idfieldofstudy")
-    private int fieldofstudyIdfieldofstudy;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "labgroup_idlabgroup")
-    private int labgroupIdlabgroup;
+//    @Basic(optional = false)
+//    @Column(name = "fieldofstudy_idfieldofstudy")
+//    private int fieldofstudyIdfieldofstudy;
+//    @Basic(optional = false)
+//    @Column(name = "labgroup_idlabgroup")
+//    private int labgroupIdlabgroup;
     @Size(max = 45)
     @Column(name = "firstname")
     private String firstname;
@@ -65,6 +66,14 @@ public class Student implements Serializable {
     @Size(max = 9)
     @Column(name = "phonenumber")
     private String phonenumber;
+    @JoinColumn(name = "idfieldofstudy", referencedColumnName = "idfieldofstudy")
+    @ManyToOne
+    private FieldOfStudy idfieldofstudy;
+    @JoinColumn(name = "idlabgroup", referencedColumnName = "idlabgroup")
+    @ManyToOne
+    private LabGroup idlabgroup;
+    @OneToMany(mappedBy = "studentcardnumber")
+    private List<StoreHouseOfDocuments> storeHouseOfDocumentsList;
 
     public Student() {
     }
@@ -75,8 +84,8 @@ public class Student implements Serializable {
 
     public Student(String studentcardnumber, int fieldofstudyIdfieldofstudy, int labgroupIdlabgroup) {
         this.studentcardnumber = studentcardnumber;
-        this.fieldofstudyIdfieldofstudy = fieldofstudyIdfieldofstudy;
-        this.labgroupIdlabgroup = labgroupIdlabgroup;
+//        this.fieldofstudyIdfieldofstudy = fieldofstudyIdfieldofstudy;
+//        this.labgroupIdlabgroup = labgroupIdlabgroup;
     }
 
     public String getStudentcardnumber() {
@@ -87,21 +96,21 @@ public class Student implements Serializable {
         this.studentcardnumber = studentcardnumber;
     }
 
-    public int getFieldofstudyIdfieldofstudy() {
-        return fieldofstudyIdfieldofstudy;
-    }
-
-    public void setFieldofstudyIdfieldofstudy(int fieldofstudyIdfieldofstudy) {
-        this.fieldofstudyIdfieldofstudy = fieldofstudyIdfieldofstudy;
-    }
-
-    public int getLabgroupIdlabgroup() {
-        return labgroupIdlabgroup;
-    }
-
-    public void setLabgroupIdlabgroup(int labgroupIdlabgroup) {
-        this.labgroupIdlabgroup = labgroupIdlabgroup;
-    }
+//    public int getFieldofstudyIdfieldofstudy() {
+//        return fieldofstudyIdfieldofstudy;
+//    }
+//
+//    public void setFieldofstudyIdfieldofstudy(int fieldofstudyIdfieldofstudy) {
+//        this.fieldofstudyIdfieldofstudy = fieldofstudyIdfieldofstudy;
+//    }
+//
+//    public int getLabgroupIdlabgroup() {
+//        return labgroupIdlabgroup;
+//    }
+//
+//    public void setLabgroupIdlabgroup(int labgroupIdlabgroup) {
+//        this.labgroupIdlabgroup = labgroupIdlabgroup;
+//    }
 
     public String getFirstname() {
         return firstname;
@@ -141,6 +150,31 @@ public class Student implements Serializable {
 
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
+    }
+
+    public FieldOfStudy getIdfieldofstudy() {
+        return idfieldofstudy;
+    }
+
+    public void setIdfieldofstudy(FieldOfStudy idfieldofstudy) {
+        this.idfieldofstudy = idfieldofstudy;
+    }
+
+    public LabGroup getIdlabgroup() {
+        return idlabgroup;
+    }
+
+    public void setIdlabgroup(LabGroup idlabgroup) {
+        this.idlabgroup = idlabgroup;
+    }
+
+    @XmlTransient
+    public List<StoreHouseOfDocuments> getStoreHouseOfDocumentsList() {
+        return storeHouseOfDocumentsList;
+    }
+
+    public void setStoreHouseOfDocumentsList(List<StoreHouseOfDocuments> storeHouseOfDocumentsList) {
+        this.storeHouseOfDocumentsList = storeHouseOfDocumentsList;
     }
 
     @Override

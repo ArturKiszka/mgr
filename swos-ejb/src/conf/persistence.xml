@@ -4,7 +4,7 @@
     <jta-data-source>jdbc/swos</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
-    <validation-mode>CALLBACK</validation-mode>
+    <validation-mode>NONE</validation-mode>
     <properties>
     </properties>
   </persistence-unit>
