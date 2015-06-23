@@ -42,6 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Classes.findByLecturehall", query = "SELECT c FROM Classes c WHERE c.lecturehall = :lecturehall"),
     @NamedQuery(name = "Classes.findByDocumentnamemask", query = "SELECT c FROM Classes c WHERE c.documentnamemask = :documentnamemask")})
 public class Classes implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -170,5 +171,5 @@ public class Classes implements Serializable {
     public String toString() {
         return "com.entity.Classes[ idclasses=" + idclasses + " ]";
     }
-    
+
 }

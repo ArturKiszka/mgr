@@ -72,8 +72,9 @@ public class Student implements Serializable {
     @JoinColumn(name = "idlabgroup", referencedColumnName = "idlabgroup")
     @ManyToOne
     private LabGroup idlabgroup;
-    @OneToMany(mappedBy = "studentcardnumber")
+    @OneToMany(mappedBy = "studentStudentcardnumber")
     private List<StoreHouseOfDocuments> storeHouseOfDocumentsList;
+    
 
     public Student() {
     }
