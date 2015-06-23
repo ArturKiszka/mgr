@@ -31,10 +31,12 @@
                                 <f:selectItems value="#{fieldOfStydyController.findAll()}"
                                                var="fieldOfStudy" itemValue="#{fieldOfStudy}" itemLabel="#{fieldOfStudy.name}"/>
                             </h:selectOneMenu>
+                             <h:outputLabel value="idlabgroup" for="idlabgroup" />
                             <h:selectOneMenu id="idlabgroup" value="#{studentController.student.idlabgroup}" title="Idlabgroup" required="true">
                                 <f:selectItems value="#{labGroupController.findAll()}"
                                                var="labGroup" itemValue="#{labGroup}" itemLabel="#{labGroup.name}"/>
                             </h:selectOneMenu>
+                             <h:commandButton value="Dodaj" action="#{studentController.add}"></h:commandButton>
                         </h:panelGrid>
                     </h:form>
                 </f:view>

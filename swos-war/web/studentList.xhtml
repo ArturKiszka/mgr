@@ -14,17 +14,17 @@
                 </h:link>
                 <h:form>
                     <table border="2">
-                        <tr><th></th><th></th><th>Legitymacja</th><th>Imie</th><th>Nazwisko</th><th>Email</th><th>Rok studiow</th><th>Grupa</th><th>Kierunek studiow</th>
+                        <tr><th></th><th></th><th>Legitymacja</th><th>Imie i Nazwisko</th><th>Email</th><th>Rok studiow</th><th>Telefon</th><th>Grupa Cwiczeniowa</th>
+                            <th>Kierunek Studiow</th>
                             <th>Opcje</th>
-                            <th>Opecje</th>
+                            <th>Opcje</th>
                         </tr>
                         <ui:repeat value="#{studentController.findAll()}" var="student">
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td>#{student.studentcardnumber}</td>
-        <!--                        <td>#{student.firstname}</td>-->
-                                <td>#{student.lastname}</td>
+                                <td>#{student.firstname} #{student.lastname}</td>
                                 <td>#{student.email}</td>
                                 <td>#{student.studyyear}</td>
                                 <td>#{student.phonenumber}</td> 

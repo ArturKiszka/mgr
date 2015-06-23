@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                 <h:link value="Dodaj nowy plik" outcome="documentAdd">
+                </h:link>
+                <h:dataTable var="document" value="#{storehouseOfDocumentsController.findAll()}" border="1" cellpadding="2" cellspacing="2">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{document.idstorehouseofdocuments}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Autor Pracy</f:facet>
+                        <h:outputText value="#{document.studentStudentcardnumber}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Zajęcia</f:facet>
+                    <h:outputText value="#{document.idclasses}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Ocena</f:facet>
+                        <h:outputText value="#{document.grade}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Uwagi</f:facet>
+                        <h:outputText value="#{document.comments}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Plik</f:facet>
+                        <h:outputText value="#{document.document}"></h:outputText>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Opcje</f:facet>
+                        <h:form>
+                            <h:commandButton value="Usuń" action="#{storehouseOfDocumentsController.delete(document)}">
+                            </h:commandButton>
+                        </h:form>
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton value="Edytuj" action="#{storehouseOfDocumentsController.edit(document)}">
+                            </h:commandButton>
+                        </h:form>
+                    </h:column>
+
+                </h:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

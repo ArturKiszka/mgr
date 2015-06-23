@@ -16,6 +16,8 @@
                         <h:panelGrid columns="2">
                             <h:outputLabel value="Classesterm:" for="classesterm" />
                             <h:inputText id="classesterm" value="#{classesController.classes.classesterm}" title="Classesterm" />
+                            <h:outputLabel value="name:" for="name" />
+                            <h:inputText id="name" value="#{classesController.classes.name}" title="name" />
                             <h:outputLabel value="Begininghour:" for="begininghour" />
                             <h:inputText id="begininghour" value="#{classesController.classes.begininghour}" title="Begininghour" >
                                 <f:convertDateTime pattern="HH:mm:ss" />
@@ -30,7 +32,7 @@
                                 <f:selectItems value="#{lecturerController.findAll()}"
                                                var="lecturer" itemValue="#{lecturer}" itemLabel="#{lecturer.firstname} #{lecturer.lastname}"/>
                             </h:selectOneMenu>
-                            <h:commandButton value="Dodaj kier" action="#{classesController.add}"></h:commandButton>
+                            <h:commandButton value="Dodaj" action="#{classesController.add()}"></h:commandButton>
                         </h:panelGrid>
                     </h:form>
                 </f:view>

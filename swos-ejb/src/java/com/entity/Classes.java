@@ -54,6 +54,9 @@ public class Classes implements Serializable {
     @Size(max = 45)
     @Column(name = "classesterm")
     private String classesterm;
+    @Size(max = 45)
+    @Column(name = "name")
+    private String name;
     @Column(name = "begininghour")
     @Temporal(TemporalType.TIME)
     private Date begininghour;
@@ -76,11 +79,18 @@ public class Classes implements Serializable {
         this.idclasses = idclasses;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 //    public Classes(Integer idclasses, int lecturerIdlecturer) {
 //        this.idclasses = idclasses;
 //        this.lecturerIdlecturer = lecturerIdlecturer;
 //    }
-
     public Integer getIdclasses() {
         return idclasses;
     }

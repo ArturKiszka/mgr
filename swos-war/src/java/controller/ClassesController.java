@@ -23,7 +23,7 @@ public class ClassesController {
     @EJB
     private ClassesFacade classesFacade;
 
-    private Classes classes;
+    private Classes classes = new Classes();
 
     public ClassesController() {
     }

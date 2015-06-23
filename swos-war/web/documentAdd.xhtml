@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+
+
+                    <h:form>
+                        <h1><h:outputText value="Create/Edit"/></h1>
+                        <h:panelGrid columns="2">
+                            
+                            <h:outputLabel value="Idclasses:" for="idclasses" />
+
+                            <h:selectOneMenu id="idclasses" value="#{storehouseOfDocumentsController.document.idclasses}" title="Idclasses" >
+                                <f:converter converterId="classesConverter" />
+                                <f:selectItems value="#{classesController.findAll()}"
+                                               var="calsses" itemValue="#{calsses}" itemLabel="#{calsses.name}"/>
+                            </h:selectOneMenu>
+
+                            <h:outputLabel value="Comments:" for="comments" />
+                            <h:inputText id="comments" value="#{storehouseOfDocumentsController.document.comments}" title="Comments" />
+                            <h:outputLabel value="Document:" for="document" />
+
+                            <h:inputTextarea rows="4" cols="30" id="document" value="#{storehouseOfDocumentsController.document.document}" title="Document" />
+                            <h:outputLabel value="Grade:" for="grade" />
+                            <h:inputText id="grade" value="#{storehouseOfDocumentsController.document.grade}" title="Grade" />
+                            <h:outputLabel value="StudentStudentcardnumber:" for="studentStudentcardnumber" />
+
+                            <h:selectOneMenu id="studentStudentcardnumber" value="#{storehouseOfDocumentsController.document.studentStudentcardnumber}" title="studentStudentcardnumber" >
+                                <f:converter converterId="studentConverter" />
+                                <f:selectItems value="#{studentController.findAll()}"
+                                               var="student" itemValue="#{student}" itemLabel="#{student.firstname} #{student.lastname}"/>
+                            </h:selectOneMenu>
+
+                            <h:commandButton value="Dodaj" action="#{storehouseOfDocumentsController.add}"></h:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
