@@ -5,6 +5,10 @@
  */
 package controller;
 
+import com.entity.Classes;
+import com.model.ClassesFacade;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,10 +20,53 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ClassesController {
 
-    /**
-     * Creates a new instance of ClassesController
-     */
+    @EJB
+    private ClassesFacade classesFacade;
+
+    private Classes classes;
+
     public ClassesController() {
     }
-    
+
+    public Classes getClasses() {
+        return classes;
+    }
+
+    public void setClasses(Classes classes) {
+        this.classes = classes;
+    }
+
+    public Classes findById(int id) {
+
+        System.out.println(classesFacade);
+        Classes f = new Classes();//facultyFacade.find(id);
+        return f;
+    }
+
+    public String add() {
+        this.classesFacade.create(classes);
+        this.classes = new Classes();
+        return "classesList";
+    }
+
+    public String delete(Classes classes) {
+        this.classesFacade.remove(classes);
+        return "classesList";
+    }
+
+    public String edit(Classes classes) {
+        this.classes = classes;
+        return "classesEdit";
+    }
+
+    public String edit() {
+        this.classesFacade.edit(classes);
+        this.classes = new Classes();
+        return "classesList";
+    }
+
+    public List<Classes> findAll() {
+        return this.classesFacade.findAll();
+    }
+
 }

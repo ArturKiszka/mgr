@@ -36,7 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Classes.findAll", query = "SELECT c FROM Classes c"),
     @NamedQuery(name = "Classes.findByIdclasses", query = "SELECT c FROM Classes c WHERE c.idclasses = :idclasses"),
-    @NamedQuery(name = "Classes.findByLecturerIdlecturer", query = "SELECT c FROM Classes c WHERE c.lecturerIdlecturer = :lecturerIdlecturer"),
     @NamedQuery(name = "Classes.findByClassesterm", query = "SELECT c FROM Classes c WHERE c.classesterm = :classesterm"),
     @NamedQuery(name = "Classes.findByBegininghour", query = "SELECT c FROM Classes c WHERE c.begininghour = :begininghour"),
     @NamedQuery(name = "Classes.findByLecturehall", query = "SELECT c FROM Classes c WHERE c.lecturehall = :lecturehall"),
@@ -49,9 +48,9 @@ public class Classes implements Serializable {
     @Basic(optional = false)
     @Column(name = "idclasses")
     private Integer idclasses;
-    @Basic(optional = false)
-    @Column(name = "lecturer_idlecturer")
-    private int lecturerIdlecturer;
+//    @Basic(optional = false)
+//    @Column(name = "lecturer_idlecturer")
+//    private int lecturerIdlecturer;
     @Size(max = 45)
     @Column(name = "classesterm")
     private String classesterm;
@@ -77,10 +76,10 @@ public class Classes implements Serializable {
         this.idclasses = idclasses;
     }
 
-    public Classes(Integer idclasses, int lecturerIdlecturer) {
-        this.idclasses = idclasses;
-        this.lecturerIdlecturer = lecturerIdlecturer;
-    }
+//    public Classes(Integer idclasses, int lecturerIdlecturer) {
+//        this.idclasses = idclasses;
+//        this.lecturerIdlecturer = lecturerIdlecturer;
+//    }
 
     public Integer getIdclasses() {
         return idclasses;
@@ -89,14 +88,14 @@ public class Classes implements Serializable {
     public void setIdclasses(Integer idclasses) {
         this.idclasses = idclasses;
     }
-
-    public int getLecturerIdlecturer() {
-        return lecturerIdlecturer;
-    }
-
-    public void setLecturerIdlecturer(int lecturerIdlecturer) {
-        this.lecturerIdlecturer = lecturerIdlecturer;
-    }
+//
+//    public int getLecturerIdlecturer() {
+//        return lecturerIdlecturer;
+//    }
+//
+//    public void setLecturerIdlecturer(int lecturerIdlecturer) {
+//        this.lecturerIdlecturer = lecturerIdlecturer;
+//    }
 
     public String getClassesterm() {
         return classesterm;
