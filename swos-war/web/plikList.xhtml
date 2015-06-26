@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                <h:link value="Dodaj nowy plik" outcome="plikAdd">
+                </h:link>
+                <h:dataTable var="plik" value="#{plikController.findAll()}" border="1" cellpadding="2" cellspacing="2">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{plik.id}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Plik</f:facet>
+                        <h:outputText value="#{plik.fileName}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <!--                        <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+                                                    <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
+                                                </p:dialog>-->
+                        <h:form>
+                            <p:commandButton value="Download" ajax="true" onsuccess="PF('dlg3').show();" icon="ui-icon-arrowthick-1-s" >
+                                <p:fileDownload value="#{plikController.downloadFile(plik.id)}" />
+                                <p:confirm header="Confirmation" message="Plik zostal pobrany" icon="ui-icon-alert" />
+                            </p:commandButton>
+<!--                            <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+                                <h:outputText value="This dialog has nice effects." />
+                            </p:dialog>-->
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode" widgetVar="dlg3">
+                                <p:commandButton value="OK" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                
+                            </p:confirmDialog>
+                        </h:form>
+                        <script type="text/javascript">
+                            function start() {
+
+                            }
+
+                            function stop() {
+                                PF('statusDialog').hide();
+                            }
+                        </script>
+                    </h:column>                   
+
+                    <h:column>
+                        <f:facet name="header">Opcje</f:facet>
+                        <h:form>
+                            <h:commandButton value="Usuń" action="#{plikController.delete(plik)}">
+                            </h:commandButton>
+                        </h:form>
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton value="Edytuj" action="#{plikController.edit(plik)}">
+                            </h:commandButton>
+                        </h:form>
+                    </h:column>
+
+                </h:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

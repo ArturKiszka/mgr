@@ -3,48 +3,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    </h:head>
     <body>
 
         <ui:composition template="./template.xhtml">
-
             <ui:define name="content">
+                  <h:form enctype="multipart/form-data">
                 <f:view>
-
-
-                    <h:form>
-                        <h1><h:outputText value="Create/Edit"/></h1>
-                        <h:panelGrid columns="2">
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h:panelGrid columns="2">
+                      
+                            <p:messages showDetail="true" />
+                            <p:fileUpload id="document"
+                                          value="#{storehouseOfDocumentsController.document.document}"
+                                          mode="simple" />
                             
-                            <h:outputLabel value="Idclasses:" for="idclasses" />
-
-                            <h:selectOneMenu id="idclasses" value="#{storehouseOfDocumentsController.document.idclasses}" title="Idclasses" >
-                                <f:converter converterId="classesConverter" />
-                                <f:selectItems value="#{classesController.findAll()}"
-                                               var="calsses" itemValue="#{calsses}" itemLabel="#{calsses.name}"/>
-                            </h:selectOneMenu>
-
-                            <h:outputLabel value="Comments:" for="comments" />
-                            <h:inputText id="comments" value="#{storehouseOfDocumentsController.document.comments}" title="Comments" />
-                            <h:outputLabel value="Document:" for="document" />
-
-                            <h:inputTextarea rows="4" cols="30" id="document" value="#{storehouseOfDocumentsController.document.document}" title="Document" />
-                            <h:outputLabel value="Grade:" for="grade" />
-                            <h:inputText id="grade" value="#{storehouseOfDocumentsController.document.grade}" title="Grade" />
-                            <h:outputLabel value="StudentStudentcardnumber:" for="studentStudentcardnumber" />
-
-                            <h:selectOneMenu id="studentStudentcardnumber" value="#{storehouseOfDocumentsController.document.studentStudentcardnumber}" title="studentStudentcardnumber" >
-                                <f:converter converterId="studentConverter" />
-                                <f:selectItems value="#{studentController.findAll()}"
-                                               var="student" itemValue="#{student}" itemLabel="#{student.firstname} #{student.lastname}"/>
-                            </h:selectOneMenu>
-
-                            <h:commandButton value="Dodaj" action="#{storehouseOfDocumentsController.add}"></h:commandButton>
-                        </h:panelGrid>
-                    </h:form>
+                            <p:commandButton id="btnSubmit" 
+                                             actionListener="#{storehouseOfDocumentsController.insert}" 
+                                             icon="ui-icon-check" value="Save"/>                
+                            
+                       
+                        <h:commandButton value="Dodaj" action="#{storehouseOfDocumentsController.add}"></h:commandButton>
+                    </h:panelGrid>
                 </f:view>
-
+ </h:form>
             </ui:define>
 
         </ui:composition>

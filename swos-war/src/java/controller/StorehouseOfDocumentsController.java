@@ -9,8 +9,12 @@ import com.entity.StoreHouseOfDocuments;
 import com.model.StoreHouseOfDocumentsFacade;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -24,9 +28,33 @@ public class StorehouseOfDocumentsController {
     private StoreHouseOfDocumentsFacade storeHouseOfDocumentsFacade;
 
     private StoreHouseOfDocuments document = new StoreHouseOfDocuments();
+    
+    private UploadedFile uploadedFile;
 
     public StoreHouseOfDocuments getDocument() {
         return document;
+    }
+    
+    public UploadedFile getUploadedFile() {
+        return uploadedFile;
+    }
+
+    public void setUploadedFile(UploadedFile uploadedFile) {
+        this.uploadedFile = uploadedFile;
+    }
+
+    public void fileUploadListener(FileUploadEvent event){
+        uploadedFile=event.getFile();
+    }
+
+    public void insert(){
+//        System.out.println(uploadedFile.toString());
+        if(uploadedFile!=null){
+            System.out.println(uploadedFile.getFileName());
+        }
+        else{
+            System.out.println("The file object is null.");
+        }
     }
 
     public void setDocument(StoreHouseOfDocuments document) {
@@ -68,5 +96,12 @@ public class StorehouseOfDocumentsController {
     public List<StoreHouseOfDocuments> findAll() {
         return this.storeHouseOfDocumentsFacade.findAll();
     }
+     public void upload() {
+//        if(file != null) {
+            FacesMessage message = new FacesMessage("Succesful",  " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+//        }
+    }
+     
 
 }
